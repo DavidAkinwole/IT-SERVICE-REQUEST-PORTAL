@@ -1,9 +1,9 @@
 import { Routes, Route} from "react-router-dom";
 
-import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
-import Requestform from "./pages/Requestform";
-import Confirmation from "./pages/Confirmation";
+import Home from "./Pages/Home";
+import Dashboard from "./Pages/Dashboard";
+import Requestform from "./Pages/Requestform";
+import Confirmation from "./Pages/Confirmation";
 import Navbar from "./Components/Navbar";
 
 function App() {

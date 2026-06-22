@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./Navbar.css"
+import "../Styles/Navbar.css"
 import { FaLifeRing } from "react-icons/fa";
 
 function Navbar () {
