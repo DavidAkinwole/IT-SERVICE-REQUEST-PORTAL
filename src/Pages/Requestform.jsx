@@ -1,6 +1,28 @@
 import { NavLink } from "react-router-dom";
 import "../Styles/Requestform.css";
 
+const [formData, setFormData] = useState({
+    name:"",
+    email:"",
+    department:"",
+    requestType:"",
+    description:"",
+    priority:""
+});
+
+const handleChange = (e)=>{
+    setFormData({
+        ...formData,
+        [e.target.name]:e.target.value
+    });
+};
+
+const handleSubmit = (e)=>{
+    e.preventDefault();
+
+    console.log(formData);
+};
+
 export default function RequestForm() {
   return (
     <main className="rf-page">
@@ -22,6 +44,7 @@ export default function RequestForm() {
           </ul>
         </nav>
       </header>
+      <div className="rf-main">
       <section className="rf-heading">
           <h1>Submit a Support Request</h1>
           <p>
@@ -29,84 +52,107 @@ export default function RequestForm() {
           </p>
       </section>
       <section className="rf-card">
-        <form>
-        <div className="rf-row">
+          <form>
 
+  <div className="rf-row">
     <div className="rf-field">
-        <label htmlFor="name">Full Name</label>
-
-        <input
-            id="name"
-            type="text"
-            placeholder="John Doe"
-        />
+      <label htmlFor="name">Full Name</label>
+      <input
+        id="name"
+        type="text"
+        placeholder="John Doe"
+      />
     </div>
 
-       <div className="rf-field">
-        <label htmlFor="email">Email Address</label>
+    <div className="rf-field">
+      <label htmlFor="email">Email Address</label>
+      <input
+        id="email"
+        type="email"
+        placeholder="john@email.com"
+      />
+    </div>
+  </div>
 
-          <input
-            id="email"
-            type="email"
-            placeholder="john@email.com"
-          />
-         </div>
-        </div>
-        <div className="rf-row">
-  <div className="rf-field">
-    <label htmlFor="department">Department</label>
+  <div className="rf-row">
+    <div className="rf-field">
+      <label htmlFor="department">Department</label>
 
-    <select id="department">
-      <option>Select a department</option>
-      <option>Technical Support</option>
-      <option>Billing</option>
-      <option>Sales</option>
-    </select>
+      <select id="department" className="rf-select">
+        <option value="">Select department</option>
+        <option>IT</option>
+        <option>HR</option>
+        <option>Finance</option>
+      </select>
+    </div>
+
+    <div className="rf-field">
+      <label htmlFor="requestType">Request Type</label>
+
+      <select id="requestType" className="rf-select">
+        <option value="">Select request type</option>
+        <option>Bug</option>
+        <option>Support</option>
+        <option>Feature Request</option>
+      </select>
+    </div>
   </div>
 
   <div className="rf-field">
-    <label htmlFor="requestType">Request Type</label>
+    <label htmlFor="description">Description</label>
 
-    <select id="requestType">
-      <option>Select request type</option>
-      <option>Bug Report</option>
-      <option>Feature Request</option>
-      <option>General Inquiry</option>
-    </select>
+    <textarea
+      id="description"
+      rows={6}
+      placeholder="Describe your issue..."
+    />
+  </div>
+  <div className="rf-field">
+  <label>Priority Level</label>
+
+  <div className="rf-priority">
+
+    <label className="priority-option">
+      <input
+        type="radio"
+        name="priority"
+        value="Low"
+      />
+      <span>Low</span>
+    </label>
+
+    <label className="priority-option">
+      <input
+        type="radio"
+        name="priority"
+        value="Medium"
+      />
+      <span>Medium</span>
+    </label>
+
+    <label className="priority-option">
+      <input
+        type="radio"
+        name="priority"
+        value="High"
+      />
+      <span>High</span>
+    </label>
+
   </div>
 </div>
+      <div className="rf-actions">
+    <button type="button" className="cancel-btn">
+        Cancel
+    </button>
 
-<div className="rf-field">
-  <label htmlFor="description">Description</label>
-
-  <textarea
-    id="description"
-    rows={6}
-    placeholder="Please describe your request..."
-  />
+    <button type="submit" className="submit-btn">
+        Submit Request
+    </button>
 </div>
-<div className="rf-field">
-  <label htmlFor="priority">Priority Level</label>
-
-  <select id="priority">
-    <option>Select priority</option>
-    <option>Low</option>
-    <option>Medium</option>
-    <option>High</option>
-  </select>
-</div>
-<div className="rf-actions">
-  <button type="button" className="rf-cancel-btn">
-    Cancel
-  </button>
-
-  <button type="submit" className="rf-submit-btn">
-    Submit Request
-  </button>
-</div>
-        </form>
-      </section>
-
+</form>
+        </section>
+      </div>
     </main>
   );
 }
