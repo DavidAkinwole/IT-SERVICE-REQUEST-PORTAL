@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../Styles/Requestform.css";
 import { useState } from "react";
 
@@ -12,6 +13,7 @@ const [formData, setFormData] = useState({
     priority:""
 });
 const [errors, setErrors] = useState({});
+const navigate = useNavigate();
 const handleChange = (e) => {
   const { name, value } = e.target;
 
@@ -40,15 +42,27 @@ const handleChange = (e) => {
         error = "Please select a request type";
         break;
 
+      case "description":
+      error = "Description is required";
+      break;
+
+      case "priority":
+      error = "Please select a priority level";
+      break;
+
       default:
         break;
     }
   }
 
-  setErrors({
-    ...errors,
-    [name]: error
-  });
+ setErrors(prev => ({
+  ...prev,
+  [name]: error
+}));
+};
+
+const handleCancel = () => {
+  navigate("/");
 };
 
 const handleSubmit = (e) => {
@@ -84,7 +98,14 @@ const handleSubmit = (e) => {
 
   if (Object.keys(newErrors).length > 0) return;
 
-  console.log(formData);
+ const requestData = {
+  id: `IT-${Math.floor(Math.random() * 1000)}`,
+  ...formData,
+  status: "Open"
+};
+navigate("/confirmation", {
+  state: requestData
+});
 };
 
   return (
@@ -145,9 +166,15 @@ const handleSubmit = (e) => {
       onChange={handleChange}
       className="rf-select">
       <option value="">Select Department</option>
-      <option value="IT">IT</option>
-      <option value="HR">HR</option>
+      <option value="Engineering">Engineering</option>
+      <option value="Product">Product</option>
+      <option value="Design">Design</option>
+      <option value="Marketing">Marketing</option>
+      <option value="Sales">Sales</option>
       <option value="Finance">Finance</option>
+      <option value="HR">HR</option>
+      <option value="Operations">Operations</option>
+      <option value="Other">Other</option>
       </select>
       {errors.department && (
   <p className="rf-error">{errors.department}</p>
@@ -163,9 +190,11 @@ const handleSubmit = (e) => {
         onChange={handleChange}
         className="rf-select">
         <option value="">Select request type</option>
-        <option>Bug</option>
-        <option>Support</option>
-        <option>Feature Request</option>
+        <option value>Software Issue</option>
+        <option value>Hardware Request</option>
+        <option value>Access Permission</option>
+        <option value>Network Problem</option>
+        <option value>Others</option>
       </select>
 
 {errors.requestType && (
@@ -234,9 +263,12 @@ const handleSubmit = (e) => {
   </div>
 </div>
       <div className="rf-actions">
-    <button type="button" className="cancel-btn">
-        Cancel
-    </button>
+    <button
+  type="button"
+  className="cancel-btn"
+  onClick={handleCancel}>
+  Cancel
+</button>
 
     <button type="submit" className="submit-btn">
         Submit Request

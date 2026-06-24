@@ -1,0 +1,99 @@
+
+
+.confirmation-page {
+  min-height: 100vh;
+  background: #f3f4f6;
+}
+
+.confirmation-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 90px;
+}
+
+.confirmation-card {
+  width: 520px;
+  background: white;
+  border-radius: 20px;
+  padding: 50px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.success-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #eef4ff;
+  color: #2563eb;
+  font-size: 28px;
+  margin: 0 auto 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmation-card h1 {
+  font-size: 36px;
+  margin-bottom: 12px;
+  color: black;
+  line-height: 36px;
+}
+
+.confirmation-card p {
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+.request-info {
+  background: #f1f5f9;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.status-pill {
+  background: #e0edff;
+  color: #2563eb;
+  padding: 4px 14px;
+  border-radius: 999px;
+}
+
+.confirmation-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top:32px;
+}
+
+.confirmation-btn{
+    border:none;
+    border-radius:999px;
+    padding:14px 28px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.confirmation-btn-primary{
+    background:#2563eb;
+    color:white;
+}
+
+.confirmation-btn-primary:hover{
+    background:#1d4ed8;
+}
+
+.confirmation-btn-secondary{
+    background:white;
+    color:#334155;
+    border:1px solid #cbd5e1;
+}
+
+.confirmation-btn-secondary:hover{
+    background:#f8fafc;
+}
