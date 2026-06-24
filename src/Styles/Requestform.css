@@ -34,7 +34,14 @@
 *::before,
 *::after { box-sizing: border-box; }
  
-
+.rf-input,
+.rf-select,
+.rf-textarea{
+    background:#ffffff;
+}
+::placeholder{
+    color:#9ca3af;
+}
 .rf-page {
   min-height: 100vh;
   background: var(--c-bg);
@@ -42,41 +49,13 @@
   color: var(--c-text);
 }
 
-.rf-header{
-    height:72px;
-    background:#fff;
-    border-bottom:1px solid #e5e7eb;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 40px;
-}
-
-.rf-logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-size:18px;
-    font-weight:700;
-    color:#111827;
-}
-
-.rf-logo__icon{
-    width:40px;
-    height:40px;
-    border-radius:12px;
-    background:#2563eb;
-    color:#fff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-weight:700;
-}
-
 .rf-nav{
     display:flex;
-    gap:18px;
+    gap:16px;
     list-style:none;
+    align-items: center;
+    margin:0;
+    padding:0;
 }
 
 .rf-nav a{
@@ -99,7 +78,7 @@
 }
  
 .rf-main {
-  max-width: 950px;
+  max-width: 760px;
   margin: 0 auto;
   padding: 56px 24px 80px;
 }
@@ -191,11 +170,13 @@ display:grid;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: .6rem;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
 }
  
 .rf-field--full {
   margin-bottom: 24px;
+  grid-column:1 / -1;
 }
  
 .rf-field--attach {
@@ -332,22 +313,34 @@ display:grid;
   clear: both;
 }
 
+
 .rf-priority{
     display:flex;
     gap:12px;
+    width:100%;
+}
+
+.priority-option{
+    flex:1;
+}
+
+.priority-option span{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:100%;
+    height:44px;
+
+    border:1px solid #d1d5db;
+    border-radius:8px;
+
+    cursor:pointer;
+    background:#fff;
 }
 
 .priority-option input{
     display:none;
-}
-
-.priority-option span{
-    display:block;
-    padding:10px 18px;
-    border:1px solid #d1d5db;
-    border-radius:8px;
-    cursor:pointer;
-    transition:.2s;
 }
 
 .priority-option input:checked + span{
@@ -490,6 +483,7 @@ display:grid;
     justify-content:flex-end;
     gap:12px;
     margin-top:32px;
+    grid-column:1 / -1;
 }
 
 .cancel-btn{
@@ -498,6 +492,7 @@ display:grid;
     border:1px solid #d1d5db;
     border-radius:8px;
     cursor:pointer;
+    color:#374151;
 }
 
 .submit-btn{
@@ -562,6 +557,13 @@ display:grid;
   transform: translateY(0);
   box-shadow: none;
   background: var(--c-blue-active);
+}
+
+input,
+select,
+textarea{
+    background:#ffffff !important;
+    color:#111827;
 }
  
 @media (max-width: 680px) {
