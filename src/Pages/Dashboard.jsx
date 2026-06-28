@@ -12,7 +12,6 @@ export default function Dashboard() {
       <div className="dashboard-content">
 
         <div className="dashboard-top">
-
           <div>
             <h1>My Requests</h1>
             <p>
@@ -26,46 +25,9 @@ export default function Dashboard() {
           >
             + New Request
           </button>
-
         </div>
 
-        {requests.length > 0 ? (
-
-          <div className="dashboard-table">
-
-            <div className="table-header">
-              <span>REQUEST ID</span>
-              <span>NAME</span>
-              <span>DEPARTMENT</span>
-              <span>REQUEST TYPE</span>
-              <span>PRIORITY</span>
-              <span>STATUS</span>
-            </div>
-
-            {requests.map((request) => (
-              <div className="table-row" key={request.id}>
-                <span>{request.id}</span>
-                <span>{request.name}</span>
-                <span>{request.department}</span>
-                <span>{request.requestType}</span>
-
-                <span>
-                  <div className="priority-pill">
-                    {request.priority}
-                  </div>
-                </span>
-
-                <span>
-                  <div className="status-pill">
-                    • {request.status}
-                  </div>
-                </span>
-              </div>
-            ))}
-
-          </div>
-
-        ) : (
+        {requests.length === 0 ? (
 
           <div className="empty-state">
 
@@ -85,6 +47,99 @@ export default function Dashboard() {
             </button>
 
           </div>
+
+        ) : (
+
+          <>
+
+            {/* Desktop Table */}
+
+            <div className="dashboard-table">
+
+              <div className="table-header">
+                <span>REQUEST ID</span>
+                <span>NAME</span>
+                <span>DEPARTMENT</span>
+                <span>REQUEST TYPE</span>
+                <span>PRIORITY</span>
+                <span>STATUS</span>
+              </div>
+
+              {requests.map((request) => (
+
+                <div className="table-row" key={request.id}>
+
+                  <span>{request.id}</span>
+
+                  <span>{request.name}</span>
+
+                  <span>{request.department}</span>
+
+                  <span>{request.requestType}</span>
+
+                  <span>
+
+                    <div className="priority-pill">
+
+                      {request.priority}
+
+                    </div>
+
+                  </span>
+
+                  <span>
+
+                    <div className="status-pill">
+
+                      • {request.status}
+
+                    </div>
+
+                  </span>
+
+                </div>
+
+              ))}
+
+            </div>
+
+            {/* Mobile */}
+
+            <div className="mobile-cards">
+
+              {requests.map((request) => (
+
+                <div className="mobile-card" key={request.id}>
+
+                  <div className="mobile-header">
+
+                    <span className="request-id">
+                      {request.id}
+                    </span>
+
+                    <div className="status-pill">
+                      • {request.status}
+                    </div>
+
+                  </div>
+
+                  <h3>{request.name}</h3>
+
+                  <p>{request.department}</p>
+
+                  <p>{request.requestType}</p>
+
+                  <div className="priority-pill">
+                    {request.priority}
+                  </div>
+
+                </div>
+
+              ))}
+
+            </div>
+
+          </>
 
         )}
 

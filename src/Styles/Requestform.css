@@ -90,7 +90,8 @@
 
 .rf-heading h1{
     font-size:34px;
-    font-weight:700;
+    font-weight:500;
+    line-break: auto;
     color:#111827;
     margin-bottom:8px;
 }
@@ -611,7 +612,25 @@ textarea{
   }
 }
 
+img{
+    max-width:100%;
+    height:auto;
+}
+
+button{
+    max-width:100%;
+}
+
+*{
+    box-sizing:border-box;
+}
+
 @media (max-width:768px){
+  .rf-heading h1{
+    max-width:320px;
+    margin:0 auto 16px;
+    line-height:1.15;
+}
 
     .rf-row{
         grid-template-columns:1fr;

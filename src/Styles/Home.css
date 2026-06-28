@@ -174,3 +174,16 @@
     width:100%;
 }
 }
+
+img{
+    max-width:100%;
+    height:auto;
+}
+
+button{
+    max-width:100%;
+}
+
+*{
+    box-sizing:border-box;
+}
