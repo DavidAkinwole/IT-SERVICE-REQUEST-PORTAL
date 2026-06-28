@@ -87,8 +87,8 @@ const handleSubmit = (e) => {
   }
 
   if (!formData.description.trim()) {
-  newErrors.description = "Description is required";
-}
+    newErrors.description = "Description is required";
+  }
 
   if (!formData.priority) {
     newErrors.priority = "Please select a priority level";
@@ -96,18 +96,30 @@ const handleSubmit = (e) => {
 
   setErrors(newErrors);
 
-  if (Object.keys(newErrors).length > 0) return;
+  if (Object.keys(newErrors).length > 0) {
+    return;
+  }
 
- const requestData = {
-  id: `IT-${Math.floor(Math.random() * 1000)}`,
-  ...formData,
-  status: "Open"
-};
-navigate("/confirmation", {
-  state: requestData
-});
-};
+  const requestData = {
+    id: `IT-${Math.floor(100 + Math.random() * 900)}`,
+    ...formData,
+    status: "Open",
+  };
 
+  const existingRequests =
+    JSON.parse(localStorage.getItem("requests")) || [];
+
+  existingRequests.push(requestData);
+
+  localStorage.setItem(
+    "requests",
+    JSON.stringify(existingRequests)
+  );
+
+  navigate("/confirmation", {
+    state: requestData,
+  });
+};
   return (
     <main className="rf-page">
       <div className="rf-main">
@@ -190,11 +202,11 @@ navigate("/confirmation", {
         onChange={handleChange}
         className="rf-select">
         <option value="">Select request type</option>
-        <option value>Software Issue</option>
-        <option value>Hardware Request</option>
-        <option value>Access Permission</option>
-        <option value>Network Problem</option>
-        <option value>Others</option>
+        <option value="Software Issue">Software Issue</option>
+        <option value="Hardware Issue">Hardware Issue</option>
+        <option value="Access Permission">Access Permission</option>
+        <option value="Network Problem">Network Problem</option>
+        <option value="Others">Others</option>
       </select>
 
 {errors.requestType && (
