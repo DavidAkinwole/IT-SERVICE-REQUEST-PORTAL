@@ -1,0 +1,249 @@
+/* ===========================
+   DESKTOP TABLE
+=========================== */
+
+.dashboard-table{
+    background:#fff;
+    border-radius:20px;
+    border:1px solid #e2e8f0;
+    overflow:hidden;
+    box-shadow:0 6px 20px rgba(0,0,0,.05);
+}
+
+.table-header,
+.table-row{
+    display:grid;
+    grid-template-columns:
+    1fr
+    1.3fr
+    1.2fr
+    1.5fr
+    .9fr
+    1.3fr
+    1fr
+    .9fr;
+
+    align-items:center;
+}
+
+.table-header{
+    background:#f8fafc;
+    padding:18px 24px;
+    font-size:13px;
+    font-weight:700;
+    color:#64748b;
+    border-bottom:1px solid #e2e8f0;
+}
+
+.table-row{
+    padding:18px 24px;
+    cursor:pointer;
+    transition:.2s;
+    border-bottom:1px solid #f1f5f9;
+}
+
+.table-row:last-child{
+    border-bottom:none;
+}
+
+.table-row:hover{
+    background:#f8fbff;
+}
+
+/* ===========================
+   REQUEST ID
+=========================== */
+
+.request-id{
+    color:#2563eb;
+    font-weight:700;
+}
+
+/* ===========================
+   PRIORITY
+=========================== */
+
+.priority-pill{
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:8px 16px;
+
+    border-radius:999px;
+
+    background:#eef2ff;
+
+    font-size:13px;
+    font-weight:600;
+}
+
+/* ===========================
+   STATUS
+=========================== */
+
+.status-select{
+
+    border:none;
+
+    border-radius:999px;
+
+    padding:8px 14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    appearance:none;
+
+    text-align:center;
+
+    min-width:140px;
+}
+
+.status-select:focus{
+    outline:none;
+}
+
+.status-open{
+    background:#dbeafe;
+    color:#2563eb;
+}
+
+.status-progress{
+    background:#fef3c7;
+    color:#d97706;
+}
+
+.status-closed{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.status-blocked{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+/* ===========================
+   DELETE
+=========================== */
+
+.delete-btn{
+
+    background:#ef4444;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 16px;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.delete-btn:hover{
+    background:#dc2626;
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+.mobile-cards{
+    display:none;
+}
+
+.mobile-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    border:1px solid #e2e8f0;
+
+    margin-bottom:18px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.05);
+}
+
+.mobile-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+}
+
+.request-name{
+
+    margin-bottom:6px;
+
+    color:#0f172a;
+}
+
+.request-department{
+
+    color:#64748b;
+
+    margin-bottom:6px;
+}
+
+.request-type{
+
+    color:#64748b;
+
+    margin-bottom:18px;
+}
+
+.mobile-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:16px;
+}
+
+.submitted-date{
+
+    color:#94a3b8;
+
+    font-size:14px;
+}
+
+.mobile-delete{
+
+    width:100%;
+
+    margin-top:18px;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:768px){
+
+.dashboard-table{
+    display:none;
+}
+
+.mobile-cards{
+    display:block;
+}
+
+}

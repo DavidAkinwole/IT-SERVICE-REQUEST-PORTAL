@@ -5,6 +5,7 @@ import Dashboard from "./Pages/Dashboard";
 import Requestform from "./Pages/Requestform";
 import Confirmation from "./Pages/Confirmation";
 import Navbar from "./Components/Navbar";
+import Adminlogin from "./Pages/Adminlogin";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
         />
         <Route
           path="/dashboard" element={<Dashboard />}
+        />
+        <Route
+        path="/admin" element={<Adminlogin />}
         />
         <Route
          path="/request" element={<Requestform />}

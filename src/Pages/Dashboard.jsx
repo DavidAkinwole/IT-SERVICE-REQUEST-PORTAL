@@ -1,145 +1,169 @@
 import "../Styles/Dashboard.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
+import { useState, useMemo } from "react";
+
+import DashboardStats from "../Components/DashboardStats";
+import DashboardFilters from "../Components/DashboardFilters";
+import RequestsTable from "../Components/RequestsTable";
+import RequestDetailsDrawer from "../Components/RequestDetailsDrawer";
 
 export default function Dashboard() {
   const navigate = useNavigate();
 
-  const requests =
-    JSON.parse(localStorage.getItem("requests")) || [];
+  // Protect route
+  const isAdmin = localStorage.getItem("isAdmin");
+
+  if (isAdmin !== "true") {
+    return <Navigate to="/admin" replace />;
+  }
+
+  // Requests state
+  const [requests, setRequests] = useState(
+    JSON.parse(localStorage.getItem("requests")) || []
+  );
+
+  // Filters
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("All");
+  const [sortBy, setSortBy] = useState("Newest");
+
+  // Selected request
+  const [selectedRequest, setSelectedRequest] = useState(null);
+
+  // Logout
+  const handleLogout = () => {
+    localStorage.removeItem("isAdmin");
+    navigate("/admin", { replace: true });
+  };
+
+  // Filter + Sort
+  const filteredRequests = useMemo(() => {
+    let data = [...requests];
+
+    if (searchTerm.trim() !== "") {
+      data = data.filter(
+        (request) =>
+          request.name
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          request.id
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase())
+      );
+    }
+
+    if (statusFilter !== "All") {
+      data = data.filter(
+        (request) => request.status === statusFilter
+      );
+    }
+
+    switch (sortBy) {
+      case "Oldest":
+        data.reverse();
+        break;
+
+      case "Priority":
+        const order = {
+          High: 3,
+          Medium: 2,
+          Low: 1,
+        };
+
+        data.sort(
+          (a, b) =>
+            order[b.priority] - order[a.priority]
+        );
+        break;
+
+      default:
+        break;
+    }
+
+    return data;
+  }, [requests, searchTerm, statusFilter, sortBy]);
 
   return (
     <main className="dashboard-page">
       <div className="dashboard-content">
 
         <div className="dashboard-top">
+
           <div>
-            <h1>My Requests</h1>
+            <h1>Admin Dashboard</h1>
+
             <p>
-              View and track your submitted IT support requests.
+              Manage IT service requests and update
+              request status.
             </p>
           </div>
 
-          <button
-            className="new-request-btn"
-            onClick={() => navigate("/request")}
-          >
-            + New Request
-          </button>
+          <div className="dashboard-actions">
+
+            <button
+              className="new-request-btn"
+              onClick={() => navigate("/request")}
+            >
+              + New Request
+            </button>
+
+            <button
+              className="logout-btn"
+              onClick={handleLogout}
+            >
+              Sign Out
+            </button>
+
+          </div>
+
         </div>
 
-        {requests.length === 0 ? (
+        <DashboardStats requests={requests} />
+
+        <DashboardFilters
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          statusFilter={statusFilter}
+          setStatusFilter={setStatusFilter}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+        />
+
+        {filteredRequests.length === 0 ? (
 
           <div className="empty-state">
 
-            <div className="empty-icon">📥</div>
+            <div className="empty-icon">
+              📥
+            </div>
 
-            <h2>No requests submitted yet.</h2>
+            <h2>No requests found.</h2>
 
             <p>
-              When you submit a request, it'll show up here.
+              Try changing your search or filters.
             </p>
-
-            <button
-              className="submit-empty-btn"
-              onClick={() => navigate("/request")}
-            >
-              Submit a Request
-            </button>
 
           </div>
 
         ) : (
 
-          <>
+          <RequestsTable
+            requests={filteredRequests}
+            allRequests={requests}
+            setRequests={setRequests}
+            onSelect={setSelectedRequest}
+          />
 
-            {/* Desktop Table */}
+        )}
 
-            <div className="dashboard-table">
+        {selectedRequest && (
 
-              <div className="table-header">
-                <span>REQUEST ID</span>
-                <span>NAME</span>
-                <span>DEPARTMENT</span>
-                <span>REQUEST TYPE</span>
-                <span>PRIORITY</span>
-                <span>STATUS</span>
-              </div>
-
-              {requests.map((request) => (
-
-                <div className="table-row" key={request.id}>
-
-                  <span>{request.id}</span>
-
-                  <span>{request.name}</span>
-
-                  <span>{request.department}</span>
-
-                  <span>{request.requestType}</span>
-
-                  <span>
-
-                    <div className="priority-pill">
-
-                      {request.priority}
-
-                    </div>
-
-                  </span>
-
-                  <span>
-
-                    <div className="status-pill">
-
-                      • {request.status}
-
-                    </div>
-
-                  </span>
-
-                </div>
-
-              ))}
-
-            </div>
-
-            {/* Mobile */}
-
-            <div className="mobile-cards">
-
-              {requests.map((request) => (
-
-                <div className="mobile-card" key={request.id}>
-
-                  <div className="mobile-header">
-
-                    <span className="request-id">
-                      {request.id}
-                    </span>
-
-                    <div className="status-pill">
-                      • {request.status}
-                    </div>
-
-                  </div>
-
-                  <h3>{request.name}</h3>
-
-                  <p>{request.department}</p>
-
-                  <p>{request.requestType}</p>
-
-                  <div className="priority-pill">
-                    {request.priority}
-                  </div>
-
-                </div>
-
-              ))}
-
-            </div>
-
-          </>
+          <RequestDetailsDrawer
+            request={selectedRequest}
+            onClose={() =>
+              setSelectedRequest(null)
+            }
+          />
 
         )}
 

@@ -19,7 +19,7 @@ function Navbar () {
                     <Link to="/request">Submit Request</Link>
                 </li>
                 <li>
-                    <Link to="/dashboard">Dashboard</Link>
+                    <Link to="/admin">Admin Login</Link>
                 </li>
             </ul>
         </nav>

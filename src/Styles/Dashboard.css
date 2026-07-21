@@ -53,6 +53,26 @@
     border:1px solid #e2e8f0;
 }
 
+.dashboard-actions{
+    display:flex;
+    gap:12px;
+}
+
+.logout-btn{
+    background:white;
+    color:#dc2626;
+    border:1px solid #fecaca;
+    padding:16px 28px;
+    border-radius:999px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.logout-btn:hover{
+    background:#fef2f2;
+}
+
 .table-header,
 .table-row{
     display:grid;
@@ -221,7 +241,6 @@ button{
     display:none;
 }
 
-/* Mobile */
 
 @media (max-width:768px){
 
@@ -239,6 +258,7 @@ button{
 .dashboard-top h1{
     font-size:30px;
     margin-bottom:8px;
+    text-align: center;
 }
 
 .dashboard-top p{
@@ -280,6 +300,7 @@ button{
     justify-content:space-between;
 
     align-items:center;
+    text-align: center;
 
     margin-bottom:16px;
 
