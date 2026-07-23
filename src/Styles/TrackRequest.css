@@ -1,0 +1,526 @@
+/* ==========================
+   PAGE
+========================== */
+
+.track-page{
+    min-height:100vh;
+    background:#f8fafc;
+    padding:70px 20px;
+}
+
+.track-container{
+    max-width:900px;
+    margin:0 auto;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.back-link{
+    background:none;
+    border:none;
+    color:#64748b;
+    font-size:15px;
+    cursor:pointer;
+    margin-bottom:26px;
+    padding:0;
+}
+
+.back-link:hover{
+    color:#2563eb;
+}
+
+.track-container h1{
+    font-size:48px;
+    color:#0f172a;
+    margin-bottom:12px;
+    font-weight:700;
+}
+
+.track-subtitle{
+    color:#64748b;
+    font-size:18px;
+    margin-bottom:36px;
+    line-height:1.6;
+}
+
+/* ==========================
+   SEARCH CARD
+========================== */
+
+.track-search-card{
+
+    background:white;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:20px;
+
+    padding:28px;
+
+    margin-bottom:28px;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.05);
+
+}
+
+.search-row{
+
+    display:flex;
+
+    gap:14px;
+
+}
+
+.search-row input{
+
+    flex:1;
+
+    padding:16px 20px;
+
+    border:1px solid #dbe3ee;
+
+    border-radius:14px;
+
+    background:#f8fafc;
+
+    font-size:16px;
+
+}
+
+.search-row input:focus{
+
+    outline:none;
+
+}
+
+.search-btn{
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:16px 30px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.search-btn:hover{
+
+    background:#1d4ed8;
+
+}
+
+/* ==========================
+   DETAILS CARD
+========================== */
+
+.request-details-card{
+
+    background:white;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:20px;
+
+    overflow:hidden;
+    width:100%;
+    text-align:left;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.05);
+
+}
+
+.request-details-card label{
+    display:block;
+    margin-bottom:10px;
+
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    color:#64748b;
+
+    text-align:left;
+}
+
+.request-details-card span,
+.request-details-card p{
+    display:block;
+    text-align:left;
+    color:#0f172a;
+    font-size:18px;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.request-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    padding:32px;
+
+    background:#f8fbff;
+    gap: 40px;
+
+    border-bottom:1px solid #e2e8f0;
+
+}
+
+.request-header > div:last-child{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:14px;
+}
+
+.label{
+
+    display:block;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    letter-spacing:.12em;
+
+    color:#64748b;
+
+    margin-bottom:10px;
+
+}
+
+.request-header h3{
+
+    font-size:20px;
+
+    color:#2563eb;
+
+    margin-bottom:12px;
+
+}
+
+.request-header h2{
+
+    font-size:30px;
+
+    color:#0f172a;
+
+    margin-bottom:10px;
+
+}
+
+.request-summary{
+    text-align:left;
+}
+
+.request-status{
+    text-align:right;
+}
+
+.description-text{
+    margin-top:10px;
+    width:100%;
+    text-align:left;
+    line-height:1.7;
+    color:#0f172a;
+}
+
+.submitted-date{
+
+    color:#64748b;
+
+    font-size:15px;
+
+}
+
+/* ==========================
+   STATUS
+========================== */
+
+.request-meta{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:14px;
+}
+
+.status-pill{
+    padding:10px 22px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:15px;
+}
+
+.priority-text{
+    font-size:15px;
+    color:#64748b;
+}
+
+.priority-text strong{
+    color:#0f172a;
+    font-weight:600;
+}
+
+.status-open{
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+}
+
+.status-progress{
+
+    background:#fef3c7;
+
+    color:#d97706;
+
+}
+
+.status-closed{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+.status-blocked{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+/* ==========================
+   BODY
+========================== */
+
+.request-body{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:32px 48px;
+    padding:36px 32px;
+
+    align-items:start;
+    justify-items:start;   /* <-- important */
+}
+
+.request-body > div{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.full-width{
+    grid-column:1 / -1;
+    text-align:center;
+    margin-top:10px;
+    align-items:center;
+}
+
+.full-width p{
+    margin-top:12px;
+    line-height:1.8;
+    max-width:700px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.full-width span{
+    display:block;
+    width:100%;
+    text-align:left;
+    line-height:1.8;
+}
+
+.request-body p{
+
+    color:#0f172a;
+
+    font-size:17px;
+
+    line-height:1.7;
+
+}
+
+
+/* ==========================
+   FOOTER
+========================== */
+
+.request-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:22px 32px;
+
+    border-top:1px solid #e2e8f0;
+
+    background:#f8fbff;
+
+}
+
+.request-footer span{
+
+    color:#64748b;
+
+}
+
+.request-footer a{
+
+    color:#2563eb;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+.request-footer a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ==========================
+   NOT FOUND
+========================== */
+
+.track-card{
+
+    max-width:600px;
+
+    margin:100px auto;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:50px;
+
+    text-align:center;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.05);
+
+}
+
+.back-btn{
+
+    margin-top:24px;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    padding:14px 24px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+.track-page{
+
+    padding:40px 18px;
+
+}
+
+.track-container h1{
+
+    font-size:34px;
+
+}
+
+.track-subtitle{
+
+    font-size:16px;
+
+}
+
+.search-row{
+
+    flex-direction:column;
+
+}
+
+.search-btn{
+
+    width:100%;
+
+}
+
+.request-header{
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+.request-body{
+
+    grid-template-columns:1fr;
+
+    gap:24px;
+
+}
+
+.full-width{
+
+    grid-column:auto;
+
+}
+
+.request-footer{
+
+    flex-direction:column;
+
+    gap:14px;
+
+    text-align:center;
+
+}
+
+}
+
+.search-error{
+    margin-top:12px;
+    color:#dc2626;
+    font-size:14px;
+    font-weight:500;
+}

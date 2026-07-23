@@ -94,7 +94,7 @@
 
 .features{
     max-width:1200px;
-    margin:90px auto 0;
+    margin:60px auto 0;
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,280px));
     gap:28px;
@@ -145,6 +145,33 @@
     font-size:1rem;
 }
 
+.feature-card{
+    cursor:pointer;
+}
+
+.feature-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 24px rgba(37,99,235,.12);
+}
+
+.hero-note{
+
+    margin-top:22px;
+
+    color:#64748b;
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    max-width:650px;
+
+    margin-left:auto;
+
+    margin-right:auto;
+
+}
+
 
 @media(max-width:768px){
 .hero h1{
@@ -186,4 +213,170 @@ button{
 
 *{
     box-sizing:border-box;
+}
+
+/* ==========================
+   STATUS CHECKER
+========================== */
+
+.status-checker{
+
+    max-width:900px;
+
+    margin:70px auto 0;
+
+    padding:40px;
+
+    background:white;
+
+    border-radius:22px;
+
+    border:1px solid #e2e8f0;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.06);
+
+}
+
+.status-checker h2{
+
+    font-size:2rem;
+
+    color:#0f172a;
+
+    margin-bottom:12px;
+
+}
+
+.status-checker p{
+
+    color:#64748b;
+
+    margin-bottom:28px;
+
+    line-height:1.7;
+
+}
+
+.status-search{
+
+    display:flex;
+
+    gap:16px;
+
+    align-items:center;
+
+}
+
+.status-search input{
+
+    flex:1;
+
+    padding:16px 20px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:14px;
+
+    font-size:16px;
+
+    transition:.25s;
+
+}
+
+.status-search input:focus{
+
+    outline:none;
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+.status-search button{
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    padding:16px 30px;
+
+    border-radius:14px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.status-search button:hover{
+
+    background:#1d4ed8;
+
+}
+
+.status-error{
+
+    margin-top:18px;
+
+    background:#fef2f2;
+
+    border:1px solid #fecaca;
+
+    color:#dc2626;
+
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    font-weight:500;
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+.status-checker{
+
+    padding:28px 22px;
+
+    margin-top:50px;
+
+}
+
+.status-checker h2{
+
+    font-size:1.6rem;
+
+}
+
+.status-search{
+
+    flex-direction:column;
+
+}
+
+.status-search input{
+
+    width:100%;
+
+}
+
+.status-search button{
+
+    width:100%;
+
+}
+
 }

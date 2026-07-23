@@ -1,317 +1,296 @@
-import "../Styles/RequestsTable.css";
+import { NavLink } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import "../Styles/Requestform.css";
+import { useState } from "react";
 
-export default function RequestsTable({
-  requests,
-  allRequests,
-  setRequests,
-  onSelect,
-}) {
+export default function RequestForm() {
+  const location = useLocation();
+  const [formData, setFormData] = useState({
+    name:"",
+    email:"",
+    department:"",
+    requestType: location.state?.requestType || "",
+    description:"",
+    priority:""
+});
+const [errors, setErrors] = useState({});
+const navigate = useNavigate();
+const handleChange = (e) => {
+  const { name, value } = e.target;
 
-  const saveRequests = (updatedRequests) => {
-    setRequests(updatedRequests);
+  setFormData({
+    ...formData,
+    [name]: value
+  });
 
-    localStorage.setItem(
-      "requests",
-      JSON.stringify(updatedRequests)
-    );
-  };
+  let error = "";
 
-  const handleStatusChange = (id, newStatus) => {
+  if (value.trim() === "") {
+    switch (name) {
+      case "name":
+        error = "Full Name is required";
+        break;
 
-    const updatedRequests = allRequests.map((request) =>
-      request.id === id
-        ? {
-            ...request,
-            status: newStatus,
-          }
-        : request
-    );
+      case "email":
+        error = "Email Address is required";
+        break;
 
-    saveRequests(updatedRequests);
-  };
+      case "department":
+        error = "Please select a department";
+        break;
 
-  const handleDelete = (id) => {
+      case "requestType":
+        error = "Please select a request type";
+        break;
 
-    const confirmDelete = window.confirm(
-      "Delete this request?"
-    );
+      case "description":
+      error = "Description is required";
+      break;
 
-    if (!confirmDelete) return;
-
-    const updatedRequests = allRequests.filter(
-      (request) => request.id !== id
-    );
-
-    saveRequests(updatedRequests);
-  };
-
-  const getStatusClass = (status) => {
-
-    switch (status) {
-
-      case "Open":
-        return "status-open";
-
-      case "In Progress":
-        return "status-progress";
-
-      case "Closed":
-        return "status-closed";
-
-      case "Blocked":
-        return "status-blocked";
+      case "priority":
+      error = "Please select a priority level";
+      break;
 
       default:
-        return "";
+        break;
     }
+  }
 
+ setErrors(prev => ({
+  ...prev,
+  [name]: error
+}));
+};
+
+const handleCancel = () => {
+  navigate("/");
+};
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  const newErrors = {};
+
+  if (!formData.name.trim()) {
+    newErrors.name = "Full Name is required";
+  }
+
+  if (!formData.email.trim()) {
+    newErrors.email = "Email Address is required";
+  }
+
+  if (!formData.department) {
+    newErrors.department = "Please select a department";
+  }
+
+  if (!formData.requestType) {
+    newErrors.requestType = "Please select a request type";
+  }
+
+  if (!formData.description.trim()) {
+    newErrors.description = "Description is required";
+  }
+
+  if (!formData.priority) {
+    newErrors.priority = "Please select a priority level";
+  }
+
+  setErrors(newErrors);
+
+  if (Object.keys(newErrors).length > 0) {
+    return;
+  }
+
+  const requestData = {
+    id: `IT-${Math.floor(100 + Math.random() * 900)}`,
+    ...formData,
+    status: "Open",
+    
   };
 
-  return (
+  const existingRequests =
+    JSON.parse(localStorage.getItem("requests")) || [];
 
-    <>
+  existingRequests.push(requestData);
 
-      {/* =======================
-          Desktop Table
-      ======================== */}
-
-      <div className="dashboard-table">
-
-        <div className="table-header">
-
-          <span>ID</span>
-
-          <span>Name</span>
-
-          <span>Department</span>
-
-          <span>Request</span>
-
-          <span>Priority</span>
-
-          <span>Status</span>
-
-          <span>Submitted</span>
-
-          <span>Action</span>
-
-        </div>
-
-        {requests.map((request) => (
-
-          <div
-            className="table-row"
-            key={request.id}
-            onClick={() => onSelect(request)}
-          >
-
-            <span className="request-id">
-              {request.id}
-            </span>
-
-            <span>{request.name}</span>
-
-            <span>{request.department}</span>
-
-            <span>{request.requestType}</span>
-
-            <span>
-
-              <div className="priority-pill">
-
-                {request.priority}
-
-              </div>
-
-            </span>
-
-            <span>
-
-              <select
-
-                className={`status-select ${getStatusClass(
-                  request.status
-                )}`}
-
-                value={request.status}
-
-                onClick={(e) =>
-                  e.stopPropagation()
-                }
-
-                onChange={(e) =>
-                  handleStatusChange(
-                    request.id,
-                    e.target.value
-                  )
-                }
-
-              >
-
-                <option value="Open">
-                  Open
-                </option>
-
-                <option value="In Progress">
-                  In Progress
-                </option>
-
-                <option value="Closed">
-                  Closed
-                </option>
-
-                <option value="Blocked">
-                  Blocked
-                </option>
-
-              </select>
-
-            </span>
-
-            <span>
-
-              {request.submittedAt || "--"}
-
-            </span>
-
-            <span>
-
-              <button
-
-                className="delete-btn"
-
-                onClick={(e) => {
-
-                  e.stopPropagation();
-
-                  handleDelete(request.id);
-
-                }}
-
-              >
-
-                Delete
-
-              </button>
-
-            </span>
-
-          </div>
-
-        ))}
-
-      </div>
-            {/* =======================
-          Mobile Cards
-      ======================== */}
-
-      <div className="mobile-cards">
-
-        {requests.map((request) => (
-
-          <div
-            className="mobile-card"
-            key={request.id}
-            onClick={() => onSelect(request)}
-          >
-
-            <div className="mobile-header">
-
-              <span className="request-id">
-                {request.id}
-              </span>
-
-              <select
-
-                className={`status-select ${getStatusClass(
-                  request.status
-                )}`}
-
-                value={request.status}
-
-                onClick={(e) =>
-                  e.stopPropagation()
-                }
-
-                onChange={(e) =>
-                  handleStatusChange(
-                    request.id,
-                    e.target.value
-                  )
-                }
-
-              >
-
-                <option value="Open">
-                  Open
-                </option>
-
-                <option value="In Progress">
-                  In Progress
-                </option>
-
-                <option value="Closed">
-                  Closed
-                </option>
-
-                <option value="Blocked">
-                  Blocked
-                </option>
-
-              </select>
-
-            </div>
-
-            <h3 className="request-name">
-              {request.name}
-            </h3>
-
-            <p className="request-department">
-              {request.department}
-            </p>
-
-            <p className="request-type">
-              {request.requestType}
-            </p>
-
-            <div className="mobile-footer">
-
-              <div className="priority-pill">
-                {request.priority}
-              </div>
-
-              <span className="submitted-date">
-                {request.submittedAt || "--"}
-              </span>
-
-            </div>
-
-            <button
-
-              className="delete-btn mobile-delete"
-
-              onClick={(e) => {
-
-                e.stopPropagation();
-
-                handleDelete(request.id);
-
-              }}
-
-            >
-
-              Delete Request
-
-            </button>
-
-          </div>
-
-        ))}
-
-      </div>
-
-    </>
-
+  localStorage.setItem(
+    "requests",
+    JSON.stringify(existingRequests)
   );
 
+  navigate("/confirmation", {
+    state: requestData,
+  });
+};
+  return (
+    <main className="rf-page">
+      <div className="rf-main">
+      <section className="rf-heading">
+          <h1>Submit a Support Request</h1>
+          <p>
+            Fill out the form below and our team will get back to you.
+          </p>
+      </section>
+      <section className="rf-card">
+          <form onSubmit={handleSubmit}>
+
+  <div className="rf-row">
+    <div className="rf-field">
+      <label htmlFor="name">Full Name</label>
+      <input
+        id="name"
+        type="text"
+        placeholder="John Doe"
+        name="name"
+    value={formData.name}
+    onChange={handleChange}
+    className={errors.name ? "rf-input rf-input--error" : "rf-input"}
+  />
+
+  {errors.name && (
+    <p className="rf-error">{errors.name}</p>
+  )}
+    </div>
+
+    <div className="rf-field">
+      <label htmlFor="email">Email Address</label>
+      <input
+        id="email"
+        type="email"
+        placeholder="john@email.com"
+        name="email"
+    value={formData.email}
+    onChange={handleChange}
+    className={errors.email ? "rf-input rf-input--error" : "rf-input"}
+  />
+
+  {errors.email && (
+    <p className="rf-error">{errors.email}</p>
+  )}
+    </div>
+  </div>
+
+  <div className="rf-row">
+    <div className="rf-field">
+      <label htmlFor="department">Department</label>
+
+      <select id="department"
+       name="department"
+      value={formData.department}
+      onChange={handleChange}
+      className="rf-select">
+      <option value="">Select Department</option>
+      <option value="Engineering">Engineering</option>
+      <option value="Product">Product</option>
+      <option value="Design">Design</option>
+      <option value="Marketing">Marketing</option>
+      <option value="Sales">Sales</option>
+      <option value="Finance">Finance</option>
+      <option value="HR">HR</option>
+      <option value="Operations">Operations</option>
+      <option value="Other">Other</option>
+      </select>
+      {errors.department && (
+  <p className="rf-error">{errors.department}</p>
+)}
+    </div>
+
+    <div className="rf-field">
+      <label htmlFor="requestType">Request Type</label>
+
+      <select id="requestType"
+       name="requestType"
+        value={formData.requestType}
+        onChange={handleChange}
+        className="rf-select">
+        <option value="">Select request type</option>
+        <option value="Software Issue">Software Issue</option>
+        <option value="Hardware Issue">Hardware Issue</option>
+        <option value="Access Permission">Access Permission</option>
+        <option value="Network Problem">Network Problem</option>
+        <option value="Others">Others</option>
+      </select>
+
+{errors.requestType && (
+  <p className="rf-error">{errors.requestType}</p>
+)}
+    </div>
+  </div>
+
+  <div className="rf-field rf-field--full">
+    <label htmlFor="description">Description</label>
+
+    <textarea
+  id="description"
+  name="description"
+  rows={5}
+  placeholder="Describe your issue..."
+  className="rf-textarea"
+  value={formData.description}
+  onChange={handleChange}
+    />
+
+    {errors.description && (
+  <p className="rf-error">{errors.description}</p>
+)}
+  </div>
+  <div className="rf-field rf-field--full">
+  <label>Priority Level</label>
+
+  <div className="rf-priority">
+
+    <label className="priority-option">
+      <input
+        type="radio"
+        name="priority"
+        value="Low"
+        checked={formData.priority==="Low"}
+        onChange={handleChange}
+      />
+      <span>Low</span>
+    </label>
+
+    <label className="priority-option">
+      <input
+        type="radio"
+        name="priority"
+        value="Medium"
+        checked={formData.priority==="Medium"}
+        onChange={handleChange}
+      />
+      <span>Medium</span>
+    </label>
+
+    <label className="priority-option">
+      <input
+        type="radio"
+        name="priority"
+        value="High"
+        checked={formData.priority==="High"}
+        onChange={handleChange}
+      />
+      <span>High</span>
+    </label>
+    {errors.priority && (
+  <p className="rf-error">{errors.priority}</p>
+)}
+  </div>
+</div>
+      <div className="rf-actions">
+    <button
+  type="button"
+  className="cancel-btn"
+  onClick={handleCancel}>
+  Cancel
+</button>
+
+    <button type="submit" className="submit-btn">
+        Submit Request
+    </button>
+</div>
+</form>
+        </section>
+      </div>
+    </main>
+  );
 }

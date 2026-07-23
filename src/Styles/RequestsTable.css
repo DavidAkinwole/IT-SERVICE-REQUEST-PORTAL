@@ -14,18 +14,15 @@
 .table-row{
     display:grid;
     grid-template-columns:
-    1fr
-    1.3fr
-    1.2fr
-    1.5fr
-    .9fr
-    1.3fr
-    1fr
-    .9fr;
-
+        1fr
+        1.5fr
+        1.3fr
+        1.6fr
+        1fr
+        1.3fr;
     align-items:center;
+    column-gap:16px;
 }
-
 .table-header{
     background:#f8fafc;
     padding:18px 24px;

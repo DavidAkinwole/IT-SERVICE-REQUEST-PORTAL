@@ -1,82 +1,184 @@
-
-
-.confirmation-page {
-  min-height: 100vh;
-  background: #f3f4f6;
+.confirmation-page{
+    min-height:100vh;
+    background:#f8fafc;
+    padding:80px 20px;
 }
 
-.confirmation-container {
-  display: flex;
-  justify-content: center;
-  padding-top: 90px;
+.confirmation-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-.confirmation-card {
-  width: 520px;
-  background: white;
-  border-radius: 20px;
-  padding: 50px;
-  text-align: center;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+.confirmation-card{
+    width:100%;
+    max-width:650px;
+    background:white;
+    border-radius:24px;
+    padding:50px;
+    text-align:center;
+    box-shadow:0 8px 24px rgba(15,23,42,.08);
 }
 
-.success-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: #eef4ff;
-  color: #2563eb;
-  font-size: 28px;
-  margin: 0 auto 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.success-icon{
+    width:72px;
+    height:72px;
+    margin:0 auto 24px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#eff6ff;
+    color:#2563eb;
+
+    font-size:34px;
+    font-weight:700;
 }
 
-.confirmation-card h1 {
-  font-size: 36px;
-  margin-bottom: 12px;
-  color: black;
-  line-height: 36px;
+.confirmation-card h1{
+    font-size:2.2rem;
+    color:#0f172a;
+    margin-bottom:14px;
 }
 
-.confirmation-card p {
-  color: #6b7280;
-  margin-bottom: 30px;
+.confirmation-card p{
+    color:#64748b;
+    line-height:1.7;
 }
 
-.request-info {
-  background: #f1f5f9;
-  border-radius: 14px;
-  padding: 16px;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 30px;
+/* ============================
+REQUEST CARD
+============================ */
+
+.request-info{
+    margin:36px 0 24px;
+
+    background:#f8fafc;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:18px;
+
+    padding:24px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
 }
 
-.status-pill {
-  background: #e0edff;
-  color: #2563eb;
-  padding: 4px 14px;
-  border-radius: 999px;
+.request-label{
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.08em;
+    color:#64748b;
 }
 
-.confirmation-actions {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top:32px;
+.request-id-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.request-id-row strong{
+    font-size:2rem;
+    color:#0f172a;
+}
+
+.copy-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    padding:8px 14px;
+
+    border:1px solid #dbe3ee;
+    border-radius:10px;
+
+    background:white;
+
+    color:#475569;
+
+    font-size:14px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.copy-btn:hover{
+    background:#f8fafc;
+    border-color:#2563eb;
+    color:#2563eb;
+}
+
+.copy-btn svg{
+    font-size:15px;
+}
+
+/* ============================
+STATUS
+============================ */
+
+.status-pill{
+    padding:8px 18px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:600;
+}
+
+.status-open{
+    background:#dbeafe;
+    color:#2563eb;
+}
+
+.status-progress{
+    background:#fef3c7;
+    color:#d97706;
+}
+
+.status-closed{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.status-blocked{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+/* ============================
+SAVE NOTE
+============================ */
+
+.save-note{
+    max-width:420px;
+    margin:0 auto 36px;
+    color:#64748b;
+}
+
+/* ============================
+BUTTONS
+============================ */
+
+.confirmation-actions{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
 }
 
 .confirmation-btn{
     border:none;
     border-radius:999px;
-    padding:14px 28px;
+    padding:15px 26px;
     font-size:15px;
     font-weight:600;
     cursor:pointer;
-    transition:.2s;
+    transition:.25s;
 }
 
 .confirmation-btn-primary{
@@ -90,44 +192,43 @@
 
 .confirmation-btn-secondary{
     background:white;
-    color:#334155;
-    border:1px solid #cbd5e1;
+    color:#0f172a;
+    border:1px solid #dbe3ee;
 }
 
 .confirmation-btn-secondary:hover{
     background:#f8fafc;
 }
 
+.confirmation-btn-outline{
+    background:transparent;
+    color:#64748b;
+}
+
+.confirmation-btn-outline:hover{
+    color:#2563eb;
+}
+
+/* ============================
+RESPONSIVE
+============================ */
+
 @media (max-width:768px){
 
-.confirmation-container{
-    padding:2rem 1rem;
+.confirmation-page{
+    padding:40px 16px;
 }
 
 .confirmation-card{
-    width:100%;
-    max-width:520px;
-    padding:2rem 1.5rem;
+    padding:36px 24px;
 }
 
 .confirmation-card h1{
-    font-size:2rem;
-    line-height:1.2;
+    font-size:1.8rem;
 }
 
-.request-info{
-    flex-direction:column;
-    align-items:center;
-    gap:10px;
-}
-
-.confirmation-actions{
-    flex-direction:column;
-    width:100%;
-}
-
-.confirmation-btn{
-    width:100%;
+.request-id-row strong{
+    font-size:1.6rem;
 }
 
 }
@@ -135,23 +236,36 @@
 @media (max-width:480px){
 
 .confirmation-card{
-    padding:1.5rem 1rem;
-}
-
-.confirmation-card h1{
-    font-size:1.6rem;
-}
-
-.confirmation-card p{
-    font-size:.95rem;
+    padding:28px 18px;
 }
 
 .success-icon{
-    width:50px;
-    height:50px;
-    font-size:22px;
+    width:60px;
+    height:60px;
+    font-size:28px;
 }
 
+.confirmation-card h1{
+    font-size:1.5rem;
+}
+
+.request-id-row{
+    flex-direction:column;
+}
+
+.request-id-row strong{
+    font-size:1.5rem;
+}
+
+.copy-btn{
+    width:40px;
+    height:40px;
+}
+
+}
+
+*{
+    box-sizing:border-box;
 }
 
 img{
@@ -161,8 +275,4 @@ img{
 
 button{
     max-width:100%;
-}
-
-*{
-    box-sizing:border-box;
 }

@@ -6,6 +6,7 @@ import Requestform from "./Pages/Requestform";
 import Confirmation from "./Pages/Confirmation";
 import Navbar from "./Components/Navbar";
 import Adminlogin from "./Pages/Adminlogin";
+import TrackRequest from "./Pages/TrackRequest";
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
         <Route
          path="/request" element={<Requestform />}
         />    
+        <Route
+         path="/track/:id" element={<TrackRequest />}
+        />
       </Routes>
     </>
   );

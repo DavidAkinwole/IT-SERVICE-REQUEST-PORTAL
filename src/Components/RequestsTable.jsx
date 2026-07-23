@@ -1,29 +1,17 @@
 import "../Styles/RequestsTable.css";
 
 export default function RequestsTable({
-  requests,
+  requests = [],
   searchTerm,
   statusFilter,
   setRequests,
+  allRequests = [],
+  onSelect,
 }) {
-
-  const filteredRequests = requests.filter((request) => {
-
-    const matchesSearch =
-      request.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      request.id.toLowerCase().includes(searchTerm.toLowerCase());
-
-    const matchesStatus =
-      statusFilter === "All" ||
-      request.status === statusFilter;
-
-    return matchesSearch && matchesStatus;
-
-  });
 
   const handleStatusChange = (id, newStatus) => {
 
-    const updatedRequests = requests.map((request) =>
+    const updatedRequests = allRequests.map((request) =>
       request.id === id
         ? { ...request, status: newStatus }
         : request
@@ -52,7 +40,7 @@ export default function RequestsTable({
           <span>STATUS</span>
         </div>
 
-        {filteredRequests.map((request) => (
+        {requests.map((request) => (
 
           <div className="table-row" key={request.id}>
 
@@ -105,7 +93,7 @@ export default function RequestsTable({
 
       <div className="mobile-cards">
 
-        {filteredRequests.map((request) => (
+        {requests.map((request) => (
 
           <div className="mobile-card" key={request.id}>
 
