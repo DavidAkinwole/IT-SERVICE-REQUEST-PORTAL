@@ -1,114 +1,84 @@
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #e5e7eb;
-    padding: 1rem 2rem;
-    background-color: hsl(0, 0%, 100%);
-}
+nav{
+    width:100%;
+    background:#ffffff;
+    border-bottom:1px solid #e5e7eb;
 
-nav h2 {
-    color: rgb(31, 31, 31);
-}
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-nav ul {
-    display: flex;
-    gap: 2rem;
+    padding:18px 60px;
 
-    list-style: none;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-.logo-icon {
-    width: 42px;
-    height: 42px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background-color: #2563eb;
-    color: white;
-}
-
-.logo h2 {
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-nav a {
-    color: #64748b;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-nav a:hover {
-   color: #2563eb;
-    opacity: 0.8;
-}
-
-img{
-    max-width:100%;
-    height:auto;
-}
-
-button{
-    max-width:100%;
-}
-
-*{
     box-sizing:border-box;
 }
 
-@media (max-width:768px){
-
-nav{
-    padding:0.75rem 1rem;
-}
-
-.logo h2{
-    font-size:1rem;
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
 .logo-icon{
-    width:36px;
-    height:36px;
+    width:42px;
+    height:42px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:12px;
+
+    background:#2563eb;
+    color:white;
+
+    font-size:20px;
+}
+
+.logo h2{
+    margin:0;
+    font-size:22px;
+    font-weight:700;
+    color:#0f172a;
 }
 
 nav ul{
     display:flex;
-    flex-direction:row;
-    gap:1rem;
-    padding:0;
+    align-items:center;
+    gap:32px;
+
+    list-style:none;
     margin:0;
+    padding:0;
 }
 
-nav a{
-    font-size:0.9rem;
+nav ul li a{
+    text-decoration:none;
+    color:#475569;
+    font-weight:500;
+    transition:.2s;
 }
 
+nav ul li a:hover{
+    color:#2563eb;
 }
 
-@media (max-width:480px){
+@media (max-width:768px){
 
-nav{
-    padding:0.75rem;
-}
+    nav{
+        padding:18px 20px;
+        flex-direction:column;
+        gap:18px;
+    }
 
-.logo h2{
-    display:none;
-}
+    nav ul{
+        width:100%;
+        justify-content:center;
+        gap:20px;
+        flex-wrap:wrap;
+    }
 
-nav ul{
-    gap:0.75rem;
-}
-
-nav a{
-    font-size:0.85rem;
-}
+    .logo h2{
+        font-size:20px;
+    }
 
 }

@@ -9,8 +9,10 @@
 }
 
 .track-container{
-    max-width:900px;
-    margin:0 auto;
+    width:min(1450px,95%);
+    margin:auto;
+    align-items:center;
+    text-align:center;
 }
 
 /* ==========================

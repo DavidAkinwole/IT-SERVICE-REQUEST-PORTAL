@@ -47,6 +47,7 @@
   background: var(--c-bg);
   font-family: var(--font);
   color: var(--c-text);
+  
 }
 
 .rf-nav{
@@ -86,6 +87,8 @@
 .rf-heading{
     max-width:950px;
     margin:48px auto 32px;
+    align-items:center;
+    text-align:center;
 }
 
 .rf-heading h1{
@@ -319,6 +322,18 @@ display:grid;
     display:flex;
     gap:12px;
     width:100%;
+}
+
+.request-header{
+    margin-bottom:32px;
+}
+
+.request-header h1{
+    margin-bottom:8px;
+}
+
+.request-header p{
+    color:#64748b;
 }
 
 .priority-option{
